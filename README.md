@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # OwnersClub - Premium British Athletic Wear
 
 A professional, modern e-commerce website for OwnersClub, a premium British sports and athletic wear brand.
@@ -119,3 +120,4 @@ Edit CSS variables in `assets/css/styles.css`:
 ## 🇬🇧 Made in the UK
 
 Proudly representing British athletic wear excellence.
+=======
