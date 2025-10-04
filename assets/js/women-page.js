@@ -1,90 +1,90 @@
-// Men's Page JavaScript
+// Women's Page JavaScript
 
-// Men's products (8 products)
-const mensProducts = [
+// Women's products (8 products)
+const womensProducts = [
     {
-        id: 1,
-        name: "Performance Hoodie",
-        category: "Men's Outerwear",
-        price: 89.99,
+        id: 101,
+        name: "Seamless Sports Bra",
+        category: "Women's Tops",
+        price: 54.99,
         image: "",
-        gender: "men",
-        type: "outerwear"
-    },
-    {
-        id: 2,
-        name: "Essential Training Tee",
-        category: "Men's Tops",
-        price: 45.99,
-        image: "",
-        gender: "men",
+        gender: "women",
         type: "tops"
     },
     {
-        id: 3,
-        name: "Tech Joggers",
-        category: "Men's Bottoms",
-        price: 79.99,
+        id: 102,
+        name: "High-Waist Leggings",
+        category: "Women's Bottoms",
+        price: 69.99,
         image: "",
-        gender: "men",
+        gender: "women",
         type: "bottoms"
     },
     {
-        id: 4,
-        name: "Lightweight Jacket",
-        category: "Men's Outerwear",
-        price: 129.99,
+        id: 103,
+        name: "Cropped Hoodie",
+        category: "Women's Outerwear",
+        price: 84.99,
         image: "",
-        gender: "men",
+        gender: "women",
         type: "outerwear"
     },
     {
-        id: 5,
-        name: "Training Shorts",
-        category: "Men's Bottoms",
-        price: 49.99,
+        id: 104,
+        name: "Training Tank",
+        category: "Women's Tops",
+        price: 39.99,
         image: "",
-        gender: "men",
+        gender: "women",
+        type: "tops"
+    },
+    {
+        id: 105,
+        name: "Performance Jacket",
+        category: "Women's Outerwear",
+        price: 119.99,
+        image: "",
+        gender: "women",
+        type: "outerwear"
+    },
+    {
+        id: 106,
+        name: "Running Shorts",
+        category: "Women's Bottoms",
+        price: 44.99,
+        image: "",
+        gender: "women",
         type: "bottoms"
     },
     {
-        id: 6,
-        name: "Compression Top",
-        category: "Men's Tops",
+        id: 107,
+        name: "Long Sleeve Top",
+        category: "Women's Tops",
         price: 59.99,
         image: "",
-        gender: "men",
+        gender: "women",
         type: "tops"
     },
     {
-        id: 7,
-        name: "Track Pants",
-        category: "Men's Bottoms",
+        id: 108,
+        name: "Yoga Pants",
+        category: "Women's Bottoms",
         price: 74.99,
         image: "",
-        gender: "men",
+        gender: "women",
         type: "bottoms"
-    },
-    {
-        id: 8,
-        name: "Winter Puffer Jacket",
-        category: "Men's Outerwear",
-        price: 189.99,
-        image: "",
-        gender: "men",
-        type: "outerwear"
     }
 ];
 
 let currentFilter = 'all';
 let currentSort = 'featured';
 
-// Load men's products
-function loadMensProducts() {
-    const grid = document.getElementById('mens-products-grid');
+// Load women's products
+function loadWomensProducts() {
+    const grid = document.getElementById('womens-products-grid');
     if (!grid) return;
     
-    let filteredProducts = [...mensProducts];
+    let filteredProducts = [...womensProducts];
     
     // Apply filter
     if (currentFilter !== 'all') {
@@ -109,21 +109,21 @@ function loadMensProducts() {
     grid.innerHTML = filteredProducts.map(product => `
         <div class="product-card" data-product-id="${product.id}">
             <div class="product-image">
-                <img src="${product.image}" alt="${product.name}">
+                ${product.image ? `<img src="${product.image}" alt="${product.name}">` : `<div class="product-placeholder">OC</div>`}
             </div>
             <div class="product-info">
                 <div class="product-category">${product.category}</div>
                 <h3 class="product-name">${product.name}</h3>
                 <div class="product-price">£${product.price.toFixed(2)}</div>
-                <button class="add-to-cart-btn" onclick="addToCartMens(${product.id})">Add to Cart</button>
+                <button class="add-to-cart-btn" onclick="addToCartWomens(${product.id})">Add to Cart</button>
             </div>
         </div>
     `).join('');
 }
 
-// Add to cart function for men's page
-function addToCartMens(productId) {
-    const product = mensProducts.find(p => p.id === productId);
+// Add to cart function for women's page
+function addToCartWomens(productId) {
+    const product = womensProducts.find(p => p.id === productId);
     if (!product) return;
     
     // Check if product already in cart
@@ -149,7 +149,7 @@ function addToCartMens(productId) {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
-    loadMensProducts();
+    loadWomensProducts();
     
     // Filter buttons
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             currentFilter = this.dataset.filter;
-            loadMensProducts();
+            loadWomensProducts();
         });
     });
     
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (sortSelect) {
         sortSelect.addEventListener('change', function() {
             currentSort = this.value;
-            loadMensProducts();
+            loadWomensProducts();
         });
     }
 });

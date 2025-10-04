@@ -234,6 +234,31 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+// Contact Form Handling
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            // Show success message
+            alert(`Thank you ${name}! We've received your message and will get back to you at ${email} within 24 hours.`);
+            
+            // Reset form
+            contactForm.reset();
+            
+            // In a real application, you would send this data to a server
+            console.log('Form submitted:', { name, email, phone, message });
+        });
+    }
+});
+
 // Parallax effect for hero and featured sections
 window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;

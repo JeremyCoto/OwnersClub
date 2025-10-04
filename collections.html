@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="OwnersClub - Men's Premium Athletic Wear">
-    <title>Men's Collection | OwnersClub</title>
+    <meta name="description" content="OwnersClub - Exclusive Collections">
+    <title>Collections | OwnersClub</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,9 +19,9 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="men.html" class="active">Men</a></li>
+                <li><a href="men.html">Men</a></li>
                 <li><a href="women.html">Women</a></li>
-                <li><a href="collections.html">Collections</a></li>
+                <li><a href="collections.html" class="active">Collections</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
             <div class="nav-icons">
@@ -53,29 +53,18 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="page-header-content">
-            <h1>MEN'S COLLECTION</h1>
-            <p>Performance-driven athletic wear designed for the modern athlete</p>
+            <h1>EXCLUSIVE COLLECTIONS</h1>
+            <p>Limited edition pieces designed for those who own their performance</p>
         </div>
     </section>
 
-    <!-- Filter Bar -->
-    <section class="filter-section">
+    <!-- Collection Tabs -->
+    <section class="collection-tabs-section">
         <div class="container">
-            <div class="filter-bar">
-                <div class="filter-group">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="tops">Tops</button>
-                    <button class="filter-btn" data-filter="bottoms">Bottoms</button>
-                    <button class="filter-btn" data-filter="outerwear">Outerwear</button>
-                </div>
-                <div class="sort-group">
-                    <select class="sort-select" id="sort-select">
-                        <option value="featured">Featured</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
-                        <option value="newest">Newest</option>
-                    </select>
-                </div>
+            <div class="collection-tabs">
+                <button class="collection-tab active" data-collection="247">247 Collection</button>
+                <button class="collection-tab" data-collection="initial">Initial Collection</button>
+                <button class="collection-tab" data-collection="winter">Winter 2025</button>
             </div>
         </div>
     </section>
@@ -83,7 +72,11 @@
     <!-- Products Grid -->
     <section class="section">
         <div class="container">
-            <div class="product-grid" id="mens-products-grid">
+            <div class="collection-info" id="collection-info">
+                <h2>247 Collection</h2>
+                <p>Performance gear for athletes who train 24/7. Designed for relentless dedication.</p>
+            </div>
+            <div class="product-grid" id="collections-products-grid">
                 <!-- Products will be loaded via JavaScript -->
             </div>
         </div>
@@ -110,10 +103,9 @@
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                        <li><a href="#sustainability">Sustainability</a></li>
+                        <li><a href="index.html#story">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="index.html#careers">Careers</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -158,9 +150,8 @@
     <!-- Cart Overlay -->
     <div class="cart-overlay" id="cart-overlay"></div>
 
-    <script src="assets/js/products.js"></script>
     <script src="assets/js/cart.js"></script>
-    <script src="assets/js/men-page.js"></script>
+    <script src="assets/js/collections-page.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
