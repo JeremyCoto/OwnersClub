@@ -1,14 +1,16 @@
 // Main JavaScript for OwnersClub
 
-// Smooth scrolling for navigation links
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded - initializing...');
+    
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                const offsetTop = target.offsetTop - 80;
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -19,14 +21,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cart button functionality
     const cartBtn = document.getElementById('cart-btn');
+    console.log('Cart button:', cartBtn);
     if (cartBtn) {
-        cartBtn.addEventListener('click', showCartSidebar);
+        cartBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Cart button clicked');
+            showCartSidebar();
+        });
     }
     
     // Close cart button
     const closeCartBtn = document.getElementById('close-cart');
     if (closeCartBtn) {
-        closeCartBtn.addEventListener('click', hideCartSidebar);
+        closeCartBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            hideCartSidebar();
+        });
     }
     
     // Cart overlay click to close
@@ -39,16 +49,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const navMenu = document.querySelector('.nav-menu');
     
+    console.log('Mobile menu button:', mobileMenuBtn);
+    console.log('Nav menu:', navMenu);
+    
     if (mobileMenuBtn && navMenu) {
         // Toggle menu when clicking hamburger button
-        mobileMenuBtn.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const isActive = navMenu.classList.contains('active');
+            console.log('Menu button clicked. Current state:', isActive);
+            
+            if (isActive) {
+                navMenu.classList.remove('active');
+                console.log('Menu closed');
+            } else {
+                navMenu.classList.add('active');
+                console.log('Menu opened');
+            }
         });
         
         // Close menu when clicking any menu link
         const menuLinks = navMenu.querySelectorAll('a');
+        console.log('Menu links found:', menuLinks.length);
         menuLinks.forEach(link => {
             link.addEventListener('click', function() {
+                console.log('Menu link clicked, closing menu');
                 navMenu.classList.remove('active');
             });
         });
@@ -59,9 +85,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const isClickOnButton = mobileMenuBtn.contains(event.target);
             
             if (!isClickInsideMenu && !isClickOnButton && navMenu.classList.contains('active')) {
+                console.log('Clicked outside, closing menu');
                 navMenu.classList.remove('active');
             }
         });
+    } else {
+        console.error('Menu elements not found!', {mobileMenuBtn, navMenu});
     }
     
     // Navbar scroll effect
@@ -233,6 +262,107 @@ document.addEventListener('keydown', function(e) {
         hideCartSidebar();
     }
 });
+
+// Account button functionality
+const accountBtn = document.getElementById('account-btn');
+if (accountBtn) {
+    accountBtn.addEventListener('click', function() {
+        // Check if user is logged in
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        
+        if (isLoggedIn === 'true') {
+            const userEmail = localStorage.getItem('userEmail');
+            const userName = localStorage.getItem('userName') || 'User';
+            
+            // Show user menu or redirect to account page
+            if (confirm(`Welcome back, ${userName}!\n\nEmail: ${userEmail}\n\nClick OK to logout or Cancel to stay logged in.`)) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userName');
+                alert('You have been logged out successfully.');
+                window.location.reload();
+            }
+        } else {
+            // Redirect to login page
+            window.location.href = 'account.html';
+        }
+    });
+}
+
+// Checkout functionality
+const checkoutBtn = document.getElementById('checkout-btn');
+const checkoutModal = document.getElementById('checkout-modal');
+const checkoutClose = document.getElementById('checkout-close');
+const checkoutForm = document.getElementById('checkout-form');
+
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', function() {
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
+        }
+        
+        // Show checkout modal
+        checkoutModal.classList.add('active');
+        
+        // Load checkout items
+        const checkoutItems = document.getElementById('checkout-items');
+        const checkoutTotal = document.getElementById('checkout-total');
+        
+        checkoutItems.innerHTML = cart.map(item => `
+            <div class="checkout-item">
+                <span>${item.name} x ${item.quantity}</span>
+                <span>£${(item.price * item.quantity).toFixed(2)}</span>
+            </div>
+        `).join('');
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        checkoutTotal.textContent = `£${total.toFixed(2)}`;
+    });
+}
+
+if (checkoutClose) {
+    checkoutClose.addEventListener('click', function() {
+        checkoutModal.classList.remove('active');
+    });
+}
+
+// Close checkout on outside click
+if (checkoutModal) {
+    checkoutModal.addEventListener('click', function(e) {
+        if (e.target === checkoutModal) {
+            checkoutModal.classList.remove('active');
+        }
+    });
+}
+
+// Payment method selection
+const paymentMethodBtns = document.querySelectorAll('.payment-method-btn');
+paymentMethodBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        paymentMethodBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+// Checkout form submission
+if (checkoutForm) {
+    checkoutForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        
+        alert(`Payment Successful!\n\nTotal: £${total.toFixed(2)}\n\nThank you for your purchase!`);
+        
+        // Clear cart
+        cart = [];
+        saveCart();
+        updateCartUI();
+        
+        // Close modal
+        checkoutModal.classList.remove('active');
+    });
+}
 
 // Contact Form Handling
 document.addEventListener('DOMContentLoaded', function() {

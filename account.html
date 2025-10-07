@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OwnersClub - My Account">
+    <title>My Account | OwnersClub</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <!-- Left Icons -->
+            <div class="nav-left">
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <button class="icon-btn" id="search-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Center Logo -->
+            <div class="nav-logo">
+                <a href="index.html">OWNERSCLUB</a>
+            </div>
+
+            <!-- Right Icons -->
+            <div class="nav-right">
+                <button class="icon-btn" id="account-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+                <button class="icon-btn" id="cart-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+
+            <!-- Desktop Menu (Hidden on mobile) -->
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="men.html">Men</a></li>
+                <li><a href="women.html">Women</a></li>
+                <li><a href="collections.html">Collections</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Account Section -->
+    <section class="account-section">
+        <div class="container">
+            <div class="account-container">
+                <div class="account-logo">
+                    <h1>OC</h1>
+                </div>
+                <h2 class="account-title">MY PRESTIGE</h2>
+                
+                <!-- Tabs -->
+                <div class="account-tabs">
+                    <button class="account-tab active" data-tab="login">LOG IN</button>
+                    <button class="account-tab" data-tab="register">REGISTER</button>
+                </div>
+
+                <!-- Login Form -->
+                <div class="account-form-container" id="login-form-container">
+                    <form class="account-form" id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">E-mail*</label>
+                            <input type="email" id="login-email" name="email" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password*</label>
+                            <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot your password?</a>
+                        <button type="submit" class="btn btn-primary btn-full">SIGN IN</button>
+                    </form>
+                    
+                    <div class="account-info">
+                        <h3>WELCOME TO THE NEW REST OF WORLD STORE</h3>
+                        <p>If you are an existing customer, please <strong>register & activate</strong> your account with the same email address that you used previously. This will ensure you can view your loyalty points, gift cards and address settings in the new account.</p>
+                        <p>If you have any questions please don't hesitate to reach out to us at <a href="mailto:support@ownersclub.co.uk">support@ownersclub.co.uk</a></p>
+                    </div>
+                </div>
+
+                <!-- Register Form -->
+                <div class="account-form-container" id="register-form-container" style="display: none;">
+                    <form class="account-form" id="register-form">
+                        <div class="form-group">
+                            <label for="register-name">Full Name*</label>
+                            <input type="text" id="register-name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">E-mail*</label>
+                            <input type="email" id="register-email" name="email" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password*</label>
+                            <input type="password" id="register-password" name="password" placeholder="Create a password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm-password">Confirm Password*</label>
+                            <input type="password" id="register-confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">REGISTER & ACTIVATE</button>
+                    </form>
+                    
+                    <div class="account-benefits">
+                        <h3>JOIN OWNERSCLUB PRESTIGE</h3>
+                        <p>EARN POINTS & REWARDS ON ALL PURCHASES</p>
+                        <ul>
+                            <li>Exclusive access to new collections</li>
+                            <li>Early access to sales</li>
+                            <li>Birthday rewards</li>
+                            <li>Free shipping on orders over £100</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>OWNERSCLUB</h4>
+                    <p>Premium British Athletic Wear</p>
+                    <p class="footer-location">🇬🇧 Made in the UK</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="men.html">Men</a></li>
+                        <li><a href="women.html">Women</a></li>
+                        <li><a href="collections.html">Collections</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html#story">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="index.html#careers">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#shipping">Shipping</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                        <li><a href="#sizing">Size Guide</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 OwnersClub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/account.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
